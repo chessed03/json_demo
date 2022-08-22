@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\EmployeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+/*Route::get('/', function () {
     return view('welcome');
-});
+});*/
+
+Route::get('/', [EmployeController::class, 'index'])->name('employes');
+Route::post('save-employe', [EmployeController::class, 'saveEmploye'])->name('save-employe');
+Route::get('test-json', [EmployeController::class, 'testQueryJson'])->name('test-json');
+Route::post('example-to-query', [EmployeController::class, 'exampleToQuery'])->name('example-to-query');
