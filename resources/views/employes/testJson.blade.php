@@ -105,15 +105,12 @@
         $.ajax({
             type: 'POST',
             url: '{{ route('example-to-query') }}',
-            headers: {
-                'X-CSRF-TOKEN': '{{ csrf_token() }}'
-            },
+            headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}'},
             data: {
                 keyword : $('#keyword').val(),
                 state   : $('#state').val()
             },
             success: function(data) {
-                console.log(data);
 
                 if(data == 0){
 
@@ -140,7 +137,7 @@
 
                         let address = processJson( JSON.parse(item.address) );
 
-                        let $tr = $('<tr class="text-success font-weight-bold">');
+                        let $tr = $('<tr class="text-danger font-weight-bold" style=">');
                         let $td = $('<td class="text-center">');
                         $td.append(catCount++);
 

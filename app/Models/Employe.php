@@ -30,25 +30,34 @@ class Employe extends Model
 
         $query = DB::table('employes');
 
-        $query->where('name','like',"%$data->keyword%")
-            ->orWhere('last_name','like',"%$data->keyword%")
-            ->orwhereJsonContains('address->zip', $data->keyword)
-            ->orWhereJsonContains('address->city', $data->keyword)
-            ->orWhereJsonContains('address->address', $data->keyword)
-            ->orWhereJsonContains('address->addressTwo', $data->keyword);
+        if( $data->keyword ){
+
+            $query->where('name','like',"%$data->keyword%")
+                ->orWhere('last_name','like',"%$data->keyword%")
+                ->orwhereJsonContains('address->zip', $data->keyword)
+                ->orWhereJsonContains('address->city', $data->keyword)
+                ->orWhereJsonContains('address->address', $data->keyword)
+                ->orWhereJsonContains('address->addressTwo', $data->keyword);
+
+        }
 
         if( $data->state ){
 
             $query->orWhereJsonContains('address->state', $data->state);
-        }
-
-        $employe = $query->get();
-
-        if($employe){
-
-            $result = $employe;
 
         }
+
+        if( $data->keyword || $data->state ){
+
+            $employe = $query->get();
+
+        }else{
+
+            $employe = $result;
+
+        }
+
+        $result = $employe;
 
         return $result;
     }
