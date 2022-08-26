@@ -137,7 +137,7 @@
 
                         let address = processJson( JSON.parse(item.address) );
 
-                        let $tr = $('<tr class="text-danger font-weight-bold" style=">');
+                        let $tr = $('<tr class="text-danger font-weight-bold">');
                         let $td = $('<td class="text-center">');
                         $td.append(catCount++);
 
